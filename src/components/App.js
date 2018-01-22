@@ -4,6 +4,7 @@ import '../style/App.css';
 import ViewingNumberCharts from './viewing_numbers_chart';
 
 class App extends Component {
+
     render() {
         const matt = 'Matt';
         const mike = 'Mike';
@@ -42,7 +43,6 @@ class App extends Component {
             2017: viewings2017,
         };
 
-
         return (
             <div className="App">
                 <header className="App-header">
@@ -50,15 +50,13 @@ class App extends Component {
                     <h1 className="App-title">Year In Review Stats</h1>
                 </header>
 
-                <div>
-                    <ViewingNumberCharts data={viewings2013} title={"2013 Viewings"} />
-                    <ViewingNumberCharts data={viewings2014} title={"2014 Viewings"} />
-                    <ViewingNumberCharts data={viewings2015} title={"2015 Viewings"} />
-                    <ViewingNumberCharts data={viewings2016} title={"2016 Viewings"} />
-                    <ViewingNumberCharts data={viewings2017} title={"2017 Viewings"} />
-
+                <div className="container">
+                    <div className="row">
+                        {Object.keys(viewings).map((key, index) => {
+                            return <ViewingNumberCharts key={key} data={viewings[key]} title={key} />
+                        })}
+                    </div>
                 </div>
-
             </div>
         );
     }

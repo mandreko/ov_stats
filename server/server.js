@@ -4,6 +4,9 @@ const path = require('path');
 const app = express();
 app.use(express.static(path.join(__dirname, 'build')));
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+
 app.get('/summaries', function(req, res) {
     const viewings = {
         2013: [
@@ -32,7 +35,12 @@ app.get('/summaries', function(req, res) {
             {name: 'tiny', total: 155, new: 0, theater: 9},
         ]
     };
-    res.send(JSON.stringify(viewings));
+
+    res.json(viewings);
 });
+
+app.get('*', (req, res) => res.status(200).send({
+    message: 'This is a REST API. Do not try requesting it in your browser.',
+}))
 
 app.listen(process.env.PORT || 8080);

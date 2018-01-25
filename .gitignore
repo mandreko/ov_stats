@@ -22,3 +22,5 @@ yarn-error.log*
 
 # Webstorm files
 .idea
+
+dev_db.sqlite

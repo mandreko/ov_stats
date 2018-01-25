@@ -7,11 +7,13 @@
     "axios": "^0.17.1",
     "bootstrap": "^4.0.0",
     "express": "^4.16.2",
+    "pg": "^7.4.1",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.1.0",
-    "recharts": "^1.0.0-beta.9"
+    "recharts": "^1.0.0-beta.9",
+    "sequelize": "^4.32.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -21,6 +23,7 @@
     "dev": "concurrently --kill-others-on-fail \"react-scripts start\" \"node node_modules/nodemon/bin/nodemon.js server\\server.js\""
   },
   "devDependencies": {
-    "nodemon": "^1.14.11"
+    "nodemon": "^1.14.11",
+    "sqlite3": "^3.1.13"
   }
 }

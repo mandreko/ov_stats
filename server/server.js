@@ -7,6 +7,15 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+// /reviewers
+// /years
+// /top/{year}
+// /top/{year}/reviewer/{reviewer}
+// /stats/{year}
+// /stats/{year}/reviewer/{reviewer}
+
+
+// temporary testing data
 app.get('/summaries', function(req, res) {
     const viewings = {
         2013: [

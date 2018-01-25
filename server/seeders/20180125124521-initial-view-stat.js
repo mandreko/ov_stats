@@ -8,7 +8,7 @@ module.exports = {
     up: (queryInterface, Sequelize) => {
 
         console.log("Getting years");
-        Year.findOne({where: {name: 2013}}).then(project => {
+        Year.findOne({where: {name: '2013'}}).then(project => {
             console.log(project);
             });
         Year.findById(1).then(project => {

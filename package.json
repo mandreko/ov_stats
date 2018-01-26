@@ -1,28 +1,25 @@
 {
-  "name": "ov_stats",
+  "name": "ov_stats_backend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:8080",
   "dependencies": {
-    "axios": "^0.17.1",
-    "bootstrap": "^4.0.0",
     "express": "^4.16.2",
     "pg": "^7.4.1",
-    "react": "^16.2.0",
-    "react-bootstrap": "^0.32.0",
-    "react-dom": "^16.2.0",
-    "react-scripts": "1.1.0",
-    "recharts": "^1.0.0-beta.9",
     "sequelize": "^4.32.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "dev": "concurrently --kill-others-on-fail \"react-scripts start\" \"cd server && node ../node_modules/nodemon/bin/nodemon.js server.js\""
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "nodemon server.js",
+    "client": "node start-client.js",
+    "dev": "echo \"This command has been deprecated. Use 'npm start'\" && exit 1",
+    "lint": "eslint ."
   },
   "devDependencies": {
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
     "nodemon": "^1.14.11",
     "sqlite3": "^3.1.13"
   }

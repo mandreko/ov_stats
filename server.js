@@ -1,5 +1,6 @@
 const compression = require('compression');
 const apicache = require('apicache');
+const serveStatic = require('serve-static');
 const express = require('express');
 const bodyParser = require('body-parser')
 const path = require('path');
@@ -8,7 +9,8 @@ app.use(compression());
 const cache = apicache.middleware;
 app.use(cache('15 minutes'));
 //app.use(express.static(path.join(__dirname, 'build')));
-app.use(express.static('client/build'));
+//app.use(express.static('client/build'));
+app.use(serveStatic('client/build'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));

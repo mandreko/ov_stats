@@ -21,7 +21,14 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'reviewerId',
             as: 'topMovies'
         });
-    }
+    };
+
+    Reviewer.associate  = (models) => {
+        Reviewer.hasMany(models.ViewStat, {
+            foreignKey: 'reviewerId',
+            as: 'viewStats'
+        });
+    };
 
     return Reviewer;
 };

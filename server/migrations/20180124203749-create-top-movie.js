@@ -17,7 +17,7 @@ module.exports = {
                 allowNull: false
             },
             IMDBId: {
-                type: Sequelize.INTEGER,
+                type: Sequelize.STRING,
                 allowNull: false
             },
             createdAt: {

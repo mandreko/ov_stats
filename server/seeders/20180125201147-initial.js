@@ -40,8 +40,8 @@ module.exports = {
         ];
 
         return Promise.all([queryInterface.bulkInsert('Years', yearsData), queryInterface.bulkInsert("Reviewers", reviewersData)]).then(() => {
-            return queryInterface.sequelize.query(`SELECT * FROM Years ORDER BY id ASC`).then(yearsResult => {
-                return queryInterface.sequelize.query(`SELECT * FROM Reviewers ORDER BY id ASC`).then(reviewersResult => {
+            return queryInterface.sequelize.query(`SELECT * FROM "Years" ORDER BY id ASC`).then(yearsResult => {
+                return queryInterface.sequelize.query(`SELECT * FROM "Reviewers" ORDER BY id ASC`).then(reviewersResult => {
                     const years = yearsResult[0];
                     const reviewers = reviewersResult[0];
 

@@ -13,7 +13,14 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'yearId',
             as: 'topMovies'
         });
-    }
+    };
+
+    Year.associate  = (models) => {
+        Year.hasMany(models.ViewStat, {
+            foreignKey: 'yearId',
+            as: 'viewStats'
+        });
+    };
 
     return Year;
 };

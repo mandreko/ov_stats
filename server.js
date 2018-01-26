@@ -5,12 +5,13 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const path = require('path');
 const app = express();
+
 app.use(compression());
 const cache = apicache.middleware;
 app.use(cache('15 minutes'));
-//app.use(express.static(path.join(__dirname, 'build')));
-//app.use(express.static('client/build'));
-app.use(serveStatic('client/build'), { maxAge: 900});
+app.use(serveStatic('client/build', {
+    maxAge: '1d'
+}));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));

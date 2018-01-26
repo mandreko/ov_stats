@@ -137,8 +137,8 @@ app.get('/summaries', function (req, res) {
     res.json(viewings);
 });
 
-app.get('*', (req, res) => res.status(200).send({
-    message: 'This is a REST API. Do not try requesting it in your browser.',
-}));
+// app.get('*', (req, res) => res.status(200).send({
+//     message: 'This is a REST API. Do not try requesting it in your browser.',
+// }));
 
 app.listen(process.env.PORT || 8080);

@@ -4,12 +4,12 @@ import {ComposedChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Line} 
 
 export default (props) => {
     return (
-        <div className="chart col-xl-6">
+        <div className="chart col">
             <div className="chart-title">
                 <h3>{props.title}</h3>
             </div>
             <div>
-                <ComposedChart width={600} height={300} data={props.data}
+                <ComposedChart width={440} height={200} data={props.data}
                           margin={{top: 20, right: 30, left: 20, bottom: 5}}>
                     <XAxis dataKey="Reviewer.name"/>
                     <YAxis/>

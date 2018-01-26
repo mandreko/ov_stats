@@ -18,5 +18,8 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "dev": "react-scripts start"
+  },
+  "devDependencies": {
+    "react-devtools": "^3.0.0"
   }
 }

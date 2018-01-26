@@ -1,7 +1,8 @@
 {
   "development": {
     "storage": "./dev_db.sqlite",
-    "dialect": "sqlite"
+    "dialect": "sqlite",
+    "logging": false
   },
   "production": {
     "use_env_variable": "DATABASE_URL"

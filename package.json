@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "apicache": "^1.2.0",
     "compression": "^1.7.1",
     "express": "^4.16.2",
     "pg": "^7.4.1",

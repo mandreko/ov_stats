@@ -15,5 +15,16 @@ module.exports = (sequelize, DataTypes) => {
         },
     });
 
+    ViewStat.associate = (models) => {
+        ViewStat.belongsTo(models.Reviewer, {
+            foreignKey: 'reviewerId',
+            onDelete: 'CASCADE',
+        });
+        ViewStat.belongsTo(models.Year, {
+            foreignKey: 'yearId',
+            onDelete: 'CASCADE',
+        });
+    }
+
     return ViewStat;
 };

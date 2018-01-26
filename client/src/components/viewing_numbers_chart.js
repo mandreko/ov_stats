@@ -16,9 +16,9 @@ export default (props) => {
                     <CartesianGrid strokeDasharray="3 3"/>
                     <Tooltip/>
                     <Legend />
-                    <Bar dataKey="theaterViews" fill="#FD8604" />
-                    <Bar dataKey="newViews" fill="#FFB717" />
-                    <Line type='monotone' dataKey='totalViews' stroke='#FECF88'/>
+                    <Bar dataKey="theaterViews" fill="#FD8604" name="In Theater" />
+                    <Bar dataKey="newViews" fill="#FFB717" name="First Viewing" />
+                    <Line type='monotone' dataKey='totalViews' stroke='#FECF88' name="Total"/>
                 </ComposedChart>
             </div>
         </div>

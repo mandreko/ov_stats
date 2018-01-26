@@ -9,9 +9,9 @@
   },
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "nodemon server.js",
+    "server": "node server.js",
     "client": "node start-client.js",
-    "dev": "echo \"This command has been deprecated. Use 'npm start'\" && exit 1",
+    "dev": "concurrently \"nodemon server.js\" \"npm run client\"",
     "lint": "eslint ."
   },
   "devDependencies": {

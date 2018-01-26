@@ -7,10 +7,10 @@ const path = require('path');
 const app = express();
 
 app.use(compression());
-const cache = apicache.middleware;
-app.use(cache('15 minutes'));
+//const cache = apicache.middleware;
+// app.use(cache('15 minutes'));
 app.use(serveStatic('client/build', {
-    maxAge: '1d'
+    // maxAge: '1d'
 }));
 
 app.use(bodyParser.json());

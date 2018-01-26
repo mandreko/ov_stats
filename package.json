@@ -20,7 +20,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "dev": "concurrently --kill-others-on-fail \"react-scripts start\" \"node node_modules/nodemon/bin/nodemon.js server\\server.js\""
+    "dev": "concurrently --kill-others-on-fail \"react-scripts start\" \"cd server && node ../node_modules/nodemon/bin/nodemon.js server.js\""
   },
   "devDependencies": {
     "nodemon": "^1.14.11",

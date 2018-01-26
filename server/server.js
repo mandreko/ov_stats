@@ -7,6 +7,11 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+const _require = require('./models/index'),
+    Year = _require.Year,
+    Reviewer = _require.Reviewer,
+    sequelize = _require.sequelize;
+
 // /reviewers
 // /years
 // /top/{year}
@@ -14,9 +19,16 @@ app.use(bodyParser.urlencoded({extended: false}));
 // /stats/{year}
 // /stats/{year}/reviewer/{reviewer}
 
+app.get('/reviewers', function (req, res) {
+    Reviewer.findAll()
+        .then(reviewers => res.status(200).json(reviewers))
+        .catch(error => res.status(400).send(error));
+    // return sequelize.query("PRAGMA database_list;")
+    //     .then(reviewers => res.status(200).json(reviewers));
+});
 
 // temporary testing data
-app.get('/summaries', function(req, res) {
+app.get('/summaries', function (req, res) {
     const viewings = {
         2013: [
             {name: 'matt', total: 325, new: 153, theater: 33},
@@ -50,6 +62,6 @@ app.get('/summaries', function(req, res) {
 
 app.get('*', (req, res) => res.status(200).send({
     message: 'This is a REST API. Do not try requesting it in your browser.',
-}))
+}));
 
 app.listen(process.env.PORT || 8080);

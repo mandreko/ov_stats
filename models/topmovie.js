@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'yearId',
             onDelete: 'CASCADE',
         });
-    }
+    };
 
     return TopMovie;
 };

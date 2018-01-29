@@ -1,7 +1,6 @@
 const compression = require('compression');
-const apicache = require('apicache');
 const express = require('express');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
 
@@ -15,8 +14,7 @@ const _require = require('./models/index'),
     Year = _require.Year,
     Reviewer = _require.Reviewer,
     TopMovie = _require.TopMovie,
-    ViewStat = _require.ViewStat,
-    sequelize = _require.sequelize;
+    ViewStat = _require.ViewStat;
 
 app.get('/reviewers', function (req, res) {
     Reviewer.findAll({

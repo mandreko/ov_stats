@@ -46,13 +46,11 @@ module.exports = {
                     const reviewers = reviewersResult[0];
 
                     const getReviewer = (name) => {
-                        const reviewer = reviewers.filter(reviewer => reviewer.name.toLowerCase() === name.toLowerCase())[0];
-                        return reviewer;
-                    }
+                        return reviewers.filter(reviewer => reviewer.name.toLowerCase() === name.toLowerCase())[0];
+                    };
                     const getYear = (name) => {
-                        const year = years.filter(year => year.name.toLowerCase() === name.toLowerCase())[0];
-                        return year;
-                    }
+                        return years.filter(year => year.name.toLowerCase() === name.toLowerCase())[0];
+                    };
                     // const getReviewer = async (name) => {
                     //         return await queryInterface.sequelize.Reviewer.findOne({ where: { name }})
                     // }

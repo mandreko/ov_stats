@@ -7,7 +7,8 @@ import {
     Nav,
     NavItem,
     NavLink
-    } from 'reactstrap';
+} from 'reactstrap';
+import {NavLink as RouterNavLink} from 'react-router-dom';
 
 export default class NavBar extends React.Component {
     constructor(props) {
@@ -18,26 +19,29 @@ export default class NavBar extends React.Component {
             isOpen: false
         };
     }
+
     toggle() {
         this.setState({
             isOpen: !this.state.isOpen
         });
     }
+
     render() {
         return (
-            <div>
-                <Navbar color="faded" light expand="md">
-                    <NavbarBrand href="/">Home</NavbarBrand>
-                    <NavbarToggler onClick={this.toggle} />
-                    <Collapse isOpen={this.state.isOpen} navbar>
-                        <Nav className="mr-auto" navbar>
-                            <NavItem>
-                                <NavLink href="#">Yearly Summaries</NavLink>
-                            </NavItem>
-                        </Nav>
-                    </Collapse>
-                </Navbar>
-            </div>
+            <Navbar color="faded" light expand="md">
+                <NavbarBrand tag={RouterNavLink} to="/">Home</NavbarBrand>
+                <NavbarToggler onClick={this.toggle}/>
+                <Collapse isOpen={this.state.isOpen} navbar>
+                    <Nav className="mr-auto" navbar>
+                        <NavItem>
+                            <NavLink tag={RouterNavLink} to="/summary_stats">Yearly Summaries</NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={RouterNavLink} to="/about">About</NavLink>
+                        </NavItem>
+                    </Nav>
+                </Collapse>
+            </Navbar>
         );
     }
 }

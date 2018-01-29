@@ -10,7 +10,6 @@ export default (props) => {
                 <Row>
                     <Col>
                         <h3>{props.title}</h3>
-
                     </Col>
                 </Row>
                 <Row>

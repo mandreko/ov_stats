@@ -22,7 +22,7 @@ export default class ViewingNumberChartList extends Component {
         return (
             <Container>
                 <Row>
-                    {Object.keys(grouped).map((key) => {
+                   {Object.keys(grouped).map((key) => {
                         return <ViewingNumberChart key={key} data={grouped[key]} title={key}/>
                     })}
                 </Row>

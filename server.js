@@ -1,17 +1,12 @@
 const compression = require('compression');
 const apicache = require('apicache');
-const serveStatic = require('serve-static');
 const express = require('express');
 const bodyParser = require('body-parser')
 const path = require('path');
 const app = express();
 
 app.use(compression());
-//const cache = apicache.middleware;
-// app.use(cache('15 minutes'));
-app.use(serveStatic('client/build', {
-    // maxAge: '1d'
-}));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -128,6 +123,10 @@ app.get('/stats', function (req, res) {
     })
         .then(viewStat => res.status(200).json(viewStat))
         .catch(error => res.status(400).send(error));
+});
+
+app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 app.listen(process.env.PORT || 8080);

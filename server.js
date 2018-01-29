@@ -41,12 +41,12 @@ app.get('/top/:year/reviewer/:reviewer', function (req, res) {
             {
                 model: Reviewer,
                 attributes: ['name'],
-                where: {name: req.params.reviewer}
+                where: {name: {[Op.eq]: req.params.reviewer}}
             },
             {
                 model: Year,
                 attributes: ['name'],
-                where: {name: req.params.year}
+                where: {name: {[Op.eq]: req.params.year}}
             }]
     })
         .then(topMovie => res.status(200).json(topMovie))
@@ -64,7 +64,7 @@ app.get('/top/:year', function (req, res) {
             {
                 model: Year,
                 attributes: ['name'],
-                where: {name: req.params.year}
+                where: {name: {[Op.eq]: req.params.year}}
             }]
     })
         .then(topMovie => res.status(200).json(topMovie))
@@ -78,7 +78,7 @@ app.get('/stats/reviewer/:reviewer', function (req, res) {
             {
                 model: Reviewer,
                 attributes: ['name'],
-                where: {name: req.params.reviewer}
+                where: {name: {[Op.eq]: req.params.reviewer}}
             },
             {
                 model: Year,
@@ -100,7 +100,7 @@ app.get('/stats/:year', function (req, res) {
             {
                 model: Year,
                 attributes: ['name'],
-                where: {name: req.params.year}
+                where: {name: {[Op.eq]: req.params.year}}
             }]
     })
         .then(viewStat => res.status(200).json(viewStat))

@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import logo from '../logo.png';
 import '../style/App.css';
 import _ from 'lodash';
 import ViewingNumberCharts from './viewing_numbers_chart';
+import Header from './header';
+import NavBar from './navbar';
 
 class App extends Component {
 
@@ -22,10 +23,12 @@ class App extends Component {
 
         return (
             <div className="App">
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo"/>
-                    <h1 className="App-title">Year In Review Stats</h1>
-                </header>
+                <Header title="Year In Review Stats"/>
+                <NavBar />
+
+
+
+
                 <div className="container">
                     <div className="row">
                         {Object.keys(grouped).map((key, index) => {

@@ -2,21 +2,19 @@ const compression = require('compression');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-
 const app = express();
 
 app.use(compression());
 app.use(express.static(path.join(__dirname, 'client/build')));
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-const Op = require('sequelize/lib/operators');
 const _require = require('./models/index'),
   Year = _require.Year,
   Reviewer = _require.Reviewer,
   TopMovie = _require.TopMovie,
-  ViewStat = _require.ViewStat;
+  ViewStat = _require.ViewStat,
+  Op = _require.Sequelize.Op;
 
 app.get('/reviewers', (req, res) => {
   Reviewer.findAll({

@@ -18,7 +18,6 @@ const _require = require('./models/index'),
   TopMovie = _require.TopMovie,
   ViewStat = _require.ViewStat;
 
-
 app.get('/reviewers', (req, res) => {
   Reviewer.findAll({
     attributes: [ 'name', 'twitterHandle', 'letterboxdHandle' ],
@@ -132,7 +131,7 @@ app.get('/stats', (req, res) => {
 });
 
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
 app.listen(process.env.PORT || 8080);

@@ -23,10 +23,6 @@ export default class App extends Component {
       });
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
-  }
-
   render() {
     return (
       <div className='App'>

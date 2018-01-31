@@ -34,6 +34,9 @@ export default class TopMoviesList extends Component {
                            title={group[ key ].name}
                            imdb={group[ key ].IMDBId}
                            rank={group[ key ].rank}
+                           rating={group[key].rating}
+                           genre={group[key].genre}
+                           posterUrl={group[key].posterUrl}
             />
           ))}
       </Row>

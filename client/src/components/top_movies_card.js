@@ -16,10 +16,10 @@ export default class TopMoviesCard extends Component {
                    className="container top-movies-container">
           <Card className="card u-clearfix top-movies-card">
             <div className="card-media">
-              <img src="https://s18.postimg.org/v0mympf7t/lmf1.jpg" alt=""
+              <img src={this.props.posterUrl} alt="" width="120" height="170"
                    className="card-media-img"/>
               <span
-                className="card-media-tag card-media-tag-orange">Action</span>
+                className="card-media-tag card-media-tag-orange">{this.props.genre}</span>
               <span className="card-rating">{this.props.rank}</span>
             </div>
             <CardBody>
@@ -27,8 +27,8 @@ export default class TopMoviesCard extends Component {
               <StarRatingComponent
                 name="rating"
                 editing={false}
-                starCount={5}
-                value={4}
+                starCount={10}
+                value={this.props.rating}
                 className="u-clearfix card-body-stars"
               />
               <a target="_blank"

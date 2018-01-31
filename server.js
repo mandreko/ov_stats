@@ -71,7 +71,7 @@ app.get('/years', (req, res) => {
 
 app.get('/top/:year/reviewer/:reviewer', (req, res) => {
   TopMovie.findAll({
-    attributes: [ 'rank', 'name', 'IMDBId' ],
+    attributes: [ 'rank', 'name', 'IMDBId', 'rating', 'genre', 'posterUrl' ],
     include: [
       {
         model: Reviewer,
@@ -93,7 +93,7 @@ app.get('/top/:year/reviewer/:reviewer', (req, res) => {
 
 app.get('/top/:year', (req, res) => {
   TopMovie.findAll({
-    attributes: [ 'rank', 'name', 'IMDBId' ],
+    attributes: [ 'rank', 'name', 'IMDBId', 'rating', 'genre', 'posterUrl' ],
     include: [
       {
         model: Reviewer,

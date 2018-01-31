@@ -52,6 +52,9 @@ app.get('/imdb_import', (req, res) => {
 app.get('/reviewers', (req, res) => {
   Reviewer.findAll({
     attributes: [ 'name', 'twitterHandle', 'letterboxdHandle' ],
+    order: [
+      ['name']
+    ]
   })
     .then(reviewers => res.status(200)
       .json(reviewers))
@@ -62,6 +65,9 @@ app.get('/reviewers', (req, res) => {
 app.get('/years', (req, res) => {
   Year.findAll({
     attributes: [ 'name' ],
+    order: [
+      ['name']
+    ]
   })
     .then(year => res.status(200)
       .json(year))
@@ -84,6 +90,9 @@ app.get('/top/:year/reviewer/:reviewer', (req, res) => {
         where: { name: { [ Op.eq ]: req.params.year } },
       },
     ],
+    order: [
+      ['rank']
+    ]
   })
     .then(topMovie => res.status(200)
       .json(topMovie))
@@ -105,6 +114,10 @@ app.get('/top/:year', (req, res) => {
         where: { name: { [ Op.eq ]: req.params.year } },
       },
     ],
+    order: [
+      [TopMovie.associations.Reviewer, 'name'],
+      ['rank']
+    ]
   })
     .then(topMovie => res.status(200)
       .json(topMovie))
@@ -126,6 +139,10 @@ app.get('/stats/reviewer/:reviewer', (req, res) => {
         attributes: [ 'name' ],
       },
     ],
+    order: [
+      [ViewStat.associations.Reviewer, 'name'],
+      [ViewStat.associations.Year, 'name']
+    ]
   })
     .then(viewStat => res.status(200)
       .json(viewStat))
@@ -147,6 +164,10 @@ app.get('/stats/:year', (req, res) => {
         where: { name: { [ Op.eq ]: req.params.year } },
       },
     ],
+    order: [
+      [ViewStat.associations.Reviewer, 'name'],
+      [ViewStat.associations.Year, 'name']
+    ]
   })
     .then(viewStat => res.status(200)
       .json(viewStat))
@@ -168,6 +189,10 @@ app.get('/stats', (req, res) => {
         attributes: [ 'name' ],
       },
     ],
+    order: [
+      [ViewStat.associations.Reviewer, 'name'],
+      [ViewStat.associations.Year, 'name']
+    ]
   })
     .then(viewStat => res.status(200)
       .json(viewStat))

@@ -5,3 +5,7 @@
 .chart-title {
     text-align: center;
 }
+
+.chart-card {
+    display: block;
+}

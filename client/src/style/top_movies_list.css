@@ -29,11 +29,6 @@
     align-items: center;
 }
 
-.top-movie-container {
-    margin: 50px auto;
-    width: 360px;
-}
-
 .card-media-tag-orange {
     background-color: #FF982C;
     color: #FFE111;
@@ -61,4 +56,13 @@
 .card-rating {
     font-size: 50px;
     position: relative;
+}
+
+.top-movies-container {
+    margin: 50px auto;
+    width: 360px;
+}
+
+.top_movies_card {
+    display: flex;
 }

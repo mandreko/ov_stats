@@ -27,7 +27,7 @@ export default class TopMoviesList extends Component {
 
   renderTopMoviesCard(group) {
     return (
-      <div>
+      <Row>
         {Object.keys(group)
           .map(key => (
             <TopMoviesCard key={key}
@@ -36,7 +36,7 @@ export default class TopMoviesList extends Component {
                            rank={group[ key ].rank}
             />
           ))}
-      </div>
+      </Row>
     );
   }
 
@@ -51,12 +51,9 @@ export default class TopMoviesList extends Component {
       <div>
         {Object.keys(grouped)
           .map(key => (
-            <Container key={key} fluid
-                       className="container top-movie-container">
-              {key}
-              <Row>
+            <Container key={key} >
+              <h2>{key}</h2>
                 {this.renderTopMoviesCard(grouped[ key ])}
-              </Row>
             </Container>
           ))}
       </div>

@@ -16,7 +16,7 @@ import '../style/viewing_numbers_chart.css';
 export default props => (
   <Col xl={4} lg={6} md={12} sm={12}>
     <Container fluid>
-      <Card>
+      <Card className="chart-card">
       <Row>
         <Col>
           <h3>{props.title}</h3>

@@ -10,12 +10,13 @@ import {
   Line,
   ResponsiveContainer,
 } from 'recharts';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Card } from 'reactstrap';
 import '../style/viewing_numbers_chart.css';
 
 export default props => (
   <Col xl={4} lg={6} md={12} sm={12}>
     <Container fluid>
+      <Card>
       <Row>
         <Col>
           <h3>{props.title}</h3>
@@ -45,6 +46,7 @@ export default props => (
           </ComposedChart>
         </ResponsiveContainer>
       </Row>
+      </Card>
     </Container>
   </Col>
 );

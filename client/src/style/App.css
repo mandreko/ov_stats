@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 .App-logo {
@@ -18,3 +22,77 @@
   font-size: 2.5em;
 }
 
+.card {
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, .1);
+  margin-bottom: 65px;
+  width: 100%;
+    flex-direction: row;
+}
+
+.card-media {
+  float: left;
+  padding: 0 0 25px 25px;
+  position: relative;
+  width: 145px;
+}
+
+.card-media-img {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+  float: left;
+  margin-top: -25px;
+  position: relative;
+}
+
+.card-media-tag {
+  border-radius: 2px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, .22);
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .4px;
+  padding: 5px 8px;
+  position: absolute;
+  left: 110px;
+  text-transform: uppercase;
+  top: -10px;
+}
+
+.card-body {
+  float: left;
+  padding: 25px 25px 25px 20px;
+  width: 215px;
+}
+
+.card-body-heading {
+  color: #6f6f6f;
+  display: inline-block;
+  font-size: 26px;
+}
+
+.card-button {
+  color: #9C948A;
+  display: inline-block;
+  font-weight: 500;
+  padding: 12px 20px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 200ms ease-out;
+}
+
+.card-button-cta {
+  background-color: #9C948A;
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .15);
+  color: #fff;
+}
+
+.card-button-cta:hover {
+  box-shadow: 1px 5px 8px rgba(0, 0, 0, .18);
+  background-color: #F44336;
+}
+
+.card-button-link:hover {
+  color: #444;
+}

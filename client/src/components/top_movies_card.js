@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import icons from 'glyphicons';
+import FontAwesome from 'react-fontawesome';
 import StarRatingComponent from 'react-star-rating-component';
 import {
   Card,
@@ -19,25 +19,33 @@ export default class TopMoviesCard extends Component {
               <img src={this.props.posterUrl} alt="" width="120" height="170"
                    className="card-media-img"/>
               <span
-                className="card-media-tag card-media-tag-orange">{this.props.genre}</span>
-              <span className="card-rating">{this.props.rank}</span>
+                className="card-media-tag card-media-tag-orange"><nobr>{this.props.genre}</nobr></span>
+              <span className="card-rating"><nobr>{this.props.rank}</nobr></span>
             </div>
             <CardBody>
               <h2 className="card-body-heading">{this.props.title}</h2>
               <StarRatingComponent
                 name="rating"
                 editing={false}
-                starCount={10}
+                starCount={5}
                 value={this.props.rating}
                 className="u-clearfix card-body-stars"
+                starColor="#FFB717"
+                emptyStarColor="#FFB717"
+                renderStarIcon={(index, value) => {
+                  return <FontAwesome name={index <= value ? 'star' : 'star-o'} />;
+                }}
+                renderStarIconHalf={() => <FontAwesome name="star-half-o" />}
               />
               <a target="_blank"
                  href={'http://www.imdb.com/title/' + this.props.imdb}
                  className="card-button card-button-link">
-                More info
-                <span className="card-button-icon">
-        {icons.arrowR}
-        </span>
+                <nobr>
+                  More info&nbsp;
+                  <span className="card-button-icon">
+                    <FontAwesome name="arrow-right" />
+                  </span>
+                </nobr>
               </a>
             </CardBody>
           </Card>

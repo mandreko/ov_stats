@@ -32,7 +32,7 @@ app.get('/imdb_import', (req, res) => {
             if (data.genre) {
               topMovie.genre = data.genre[ 0 ];
             }
-            topMovie.rating = Math.round(parseFloat(data.rating));
+            topMovie.rating = Math.round(data.rating)/2;
 
             return topMovie.save()
               .then(function () {

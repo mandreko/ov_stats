@@ -30,7 +30,7 @@
 }
 
 .card-media-tag-orange {
-    background-color: #FF982C;
+    background-color: #FD8604;
     color: #FFE111;
 }
 
@@ -46,12 +46,13 @@
 
 .card-button-icon {
     display:inline-block;
-    font-size: 24px;
+    /*font-size: 24px;*/
 }
 
 .dv-star-rating {
     font-size: 26px;
 }
+
 
 .card-rating {
     font-size: 50px;

@@ -12,6 +12,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    rating: {
+      type: DataTypes.INTEGER
+    },
+    genre: {
+      type: DataTypes.STRING
+    },
+    posterUrl: {
+      type: DataTypes.STRING(2048)
+    }
   });
 
   TopMovie.associate = (models) => {

@@ -25,5 +25,8 @@
     "eslint-plugin-react": "^7.4.0",
     "nodemon": "^1.14.11",
     "sqlite3": "^3.1.13"
+  },
+  "engines": {
+    "node": "8.9.4"
   }
 }

@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
 const imdb = require('imdb');
+const util = require('util');
+const _ = require('lodash');
 
 app.use(compression());
 app.use(express.static(path.join(__dirname, 'client/build')));
@@ -15,37 +17,38 @@ const _require = require('./models/index'),
   Reviewer = _require.Reviewer,
   TopMovie = _require.TopMovie,
   ViewStat = _require.ViewStat,
-  Sequelize = _require.Sequelize,
   Op = _require.Sequelize.Op;
 
-
 app.get('/imdb_import', (req, res) => {
-  TopMovie.findAll()
-    .then(topMovies => {
-      return Sequelize.Promise.each(topMovies, function (topMovie) {
-        imdb(topMovie.get('IMDBId'), function (err, data) {
-          if (err) {
-            console.log(err.stack);
-          }
-          if (data) {
-            topMovie.posterUrl = data.poster;
-            if (data.genre) {
-              topMovie.genre = data.genre[ 0 ];
-            }
-            topMovie.rating = Math.round(data.rating)/2;
+  const UpdateMovies = async () => {
+    const topMovies = await TopMovie.findAll();
+    console.log("Movie count: " + _.size(topMovies));
 
-            return topMovie.save()
-              .then(function () {
-              })
-              .catch(function (err) {
-                console.log(err);
-              });
-          }
-        });
-      });
-    })
-    .then((data) => res.status(200)
-      .json(data))
+    await Promise.all(topMovies.map(async(topMovie) => {
+      return updateMovieDetails(topMovie);
+    }));
+
+    console.log("All done");
+    return topMovies;
+  };
+
+  const updateMovieDetails = topMovie => {
+    const imdbPromise = util.promisify(imdb);
+    return imdbPromise(topMovie.get('IMDBId')).then(data => {
+      if (data) {
+        topMovie.posterUrl = data.poster;
+        topMovie.rating = Math.round(data.rating) / 2;
+        if (data.genre) {
+          topMovie.genre = data.genre[0];
+        }
+        console.log("Updating movie: " + topMovie.name);
+        return topMovie.save();
+      }
+    });
+  };
+
+  UpdateMovies()
+    .then((data) => res.status(200).json(data))
     .catch(error => console.log(error));
 });
 
@@ -53,7 +56,7 @@ app.get('/reviewers', (req, res) => {
   Reviewer.findAll({
     attributes: [ 'name', 'twitterHandle', 'letterboxdHandle' ],
     order: [
-      ['name']
+      [ 'name' ]
     ]
   })
     .then(reviewers => res.status(200)
@@ -66,7 +69,7 @@ app.get('/years', (req, res) => {
   Year.findAll({
     attributes: [ 'name' ],
     order: [
-      ['name']
+      [ 'name' ]
     ]
   })
     .then(year => res.status(200)
@@ -91,7 +94,7 @@ app.get('/top/:year/reviewer/:reviewer', (req, res) => {
       },
     ],
     order: [
-      ['rank']
+      [ 'rank' ]
     ]
   })
     .then(topMovie => res.status(200)
@@ -115,8 +118,8 @@ app.get('/top/:year', (req, res) => {
       },
     ],
     order: [
-      [TopMovie.associations.Reviewer, 'name'],
-      ['rank']
+      [ TopMovie.associations.Reviewer, 'name' ],
+      [ 'rank' ]
     ]
   })
     .then(topMovie => res.status(200)
@@ -140,8 +143,8 @@ app.get('/stats/reviewer/:reviewer', (req, res) => {
       },
     ],
     order: [
-      [ViewStat.associations.Reviewer, 'name'],
-      [ViewStat.associations.Year, 'name']
+      [ ViewStat.associations.Reviewer, 'name' ],
+      [ ViewStat.associations.Year, 'name' ]
     ]
   })
     .then(viewStat => res.status(200)
@@ -165,8 +168,8 @@ app.get('/stats/:year', (req, res) => {
       },
     ],
     order: [
-      [ViewStat.associations.Reviewer, 'name'],
-      [ViewStat.associations.Year, 'name']
+      [ ViewStat.associations.Reviewer, 'name' ],
+      [ ViewStat.associations.Year, 'name' ]
     ]
   })
     .then(viewStat => res.status(200)
@@ -190,8 +193,8 @@ app.get('/stats', (req, res) => {
       },
     ],
     order: [
-      [ViewStat.associations.Reviewer, 'name'],
-      [ViewStat.associations.Year, 'name']
+      [ ViewStat.associations.Reviewer, 'name' ],
+      [ ViewStat.associations.Year, 'name' ]
     ]
   })
     .then(viewStat => res.status(200)

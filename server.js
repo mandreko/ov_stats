@@ -4,7 +4,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
 const imdb = require('imdb');
-var _ = require('lodash');
+const util = require('util');
+const _ = require('lodash');
 
 app.use(compression());
 app.use(express.static(path.join(__dirname, 'client/build')));
@@ -23,11 +24,8 @@ app.get('/imdb_import', (req, res) => {
     const topMovies = await TopMovie.findAll();
     console.log("Movie count: " + _.size(topMovies));
 
-    // await topMovies.forEach(async topMovie => {
-    //   await updateMovieDetails(topMovie);
-    // });
     await Promise.all(topMovies.map(async(topMovie) => {
-      await updateMovieDetails(topMovie);
+      return updateMovieDetails(topMovie);
     }));
 
     console.log("All done");
@@ -35,18 +33,16 @@ app.get('/imdb_import', (req, res) => {
   };
 
   const updateMovieDetails = topMovie => {
-    return imdb(topMovie.get('IMDBId'), (err, data) => {
-      if (err) {
-        console.log(err.stack);
-      }
+    const imdbPromise = util.promisify(imdb);
+    return imdbPromise(topMovie.get('IMDBId')).then(data => {
       if (data) {
         topMovie.posterUrl = data.poster;
         topMovie.rating = Math.round(data.rating) / 2;
         if (data.genre) {
           topMovie.genre = data.genre[0];
         }
-        topMovie.save();
-        console.log("Updated movie: " + topMovie.name);
+        console.log("Updating movie: " + topMovie.name);
+        return topMovie.save();
       }
     });
   };
